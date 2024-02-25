@@ -10,7 +10,9 @@
         <item name="colorSecondaryVariant">@color/teal_200</item>
         <item name="colorOnSecondary">@color/black</item>
         <!-- Status bar color. -->
-        <item name="android:statusBarColor">?attr/colorPrimaryVariant</item>
+        <item name="android:statusBarColor">#5700ADB3</item>
         <!-- Customize your theme here. -->
+        <item name="android:windowBackground">@drawable/bcd</item>
+        <item name="cardBackgroundColor">#657A78</item>
     </style>
 </resources>

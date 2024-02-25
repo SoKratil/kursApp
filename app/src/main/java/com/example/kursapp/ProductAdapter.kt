@@ -10,8 +10,9 @@ import androidx.recyclerview.widget.RecyclerView
 import com.example.kursapp.R
 import com.squareup.picasso.Picasso
 
-class ProductAdapter(private var productList: List<Product>) :
-    RecyclerView.Adapter<ProductAdapter.ViewHolder>() {
+class ProductAdapter(private var productList: List<Product>
+
+    ) : RecyclerView.Adapter<ProductAdapter.ViewHolder>() {
 
     inner class ViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
         val nameTextView: TextView = itemView.findViewById(R.id.productNameTextView)
@@ -39,6 +40,9 @@ class ProductAdapter(private var productList: List<Product>) :
         return productList.size
     }
 
-
+    fun updateData(newList: List<Product>) {
+        productList = newList
+        notifyDataSetChanged()
+    }
 
 }

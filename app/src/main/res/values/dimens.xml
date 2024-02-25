@@ -1,0 +1,4 @@
+<resources>
+    <!-- Размер тени -->
+    <dimen name="elevation">2dp</dimen>
+</resources>
