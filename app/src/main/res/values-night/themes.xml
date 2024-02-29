@@ -14,5 +14,7 @@
         <!-- Customize your theme here. -->
         <item name="android:windowBackground">@drawable/bcd</item>
         <item name="cardBackgroundColor">#657A78</item>
+        <item name="android:textColor">@color/white</item>
+
     </style>
 </resources>

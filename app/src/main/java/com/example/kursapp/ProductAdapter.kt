@@ -1,6 +1,5 @@
 package com.example.kursapp
 
-
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -10,15 +9,28 @@ import androidx.recyclerview.widget.RecyclerView
 import com.example.kursapp.R
 import com.squareup.picasso.Picasso
 
-class ProductAdapter(private var productList: List<Product>
+class ProductAdapter(
+    private var productList: List<Product>,
+    private val listener: OnProductClickListener // Интерфейс для обработки нажатий
+) : RecyclerView.Adapter<ProductAdapter.ViewHolder>() {
 
-    ) : RecyclerView.Adapter<ProductAdapter.ViewHolder>() {
-
-    inner class ViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
+    inner class ViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView), View.OnClickListener {
         val nameTextView: TextView = itemView.findViewById(R.id.productNameTextView)
         val priceTextView: TextView = itemView.findViewById(R.id.productPriceTextView)
         val descriptionTextView: TextView = itemView.findViewById(R.id.productDescriptionTextView)
         val imageView: ImageView = itemView.findViewById(R.id.productImageView)
+
+        init {
+            itemView.setOnClickListener(this)
+        }
+
+        override fun onClick(view: View) {
+            val position = adapterPosition
+            if (position != RecyclerView.NO_POSITION) {
+                val product = productList[position]
+                listener.onProductClick(product) // Вызываем метод интерфейса при нажатии на элемент
+            }
+        }
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
@@ -45,4 +57,8 @@ class ProductAdapter(private var productList: List<Product>
         notifyDataSetChanged()
     }
 
+    // Интерфейс для обработки нажатий на элементы списка
+    interface OnProductClickListener {
+        fun onProductClick(product: Product)
+    }
 }

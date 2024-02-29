@@ -9,5 +9,15 @@
         android:id="@+id/mainlist"
         android:name="com.example.kursapp.fragments.mainlist"
         android:label="fragment_mainlist"
-        tools:layout="@layout/fragment_mainlist" />
+        tools:layout="@layout/fragment_mainlist" >
+        <action
+            android:id="@+id/action_mainlist_to_fragmentDetail"
+            app:destination="@id/fragmentDetail2" />
+    </fragment>
+    <fragment
+        android:id="@+id/fragmentDetail2"
+        android:name="com.example.kursapp.fragments.FragmentDetail"
+        android:label="fragment_detail"
+        tools:layout="@layout/fragment_detail" />
+
 </navigation>
