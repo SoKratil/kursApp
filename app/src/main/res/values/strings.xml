@@ -2,4 +2,19 @@
     <string name="app_name">Построй ПК</string>
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="label_graphics_cards">Выберите графическую карту</string>
+    <string name="label_motherboards">Выберите материнскую плату</string>
+    <string name="label_processors">Выберите процессор</string>
+    <string name="label_ram">Выберите объем оперативной памяти</string>
+    <string name="label_ssd">Выберите накопитель SSD</string>
+
+
+    <string name="label_graphics_cards_spinner">Выберите графическую карту</string>
+    <string name="label_motherboards_spinner">Выберите материнскую плату</string>
+    <string name="label_processors_spinner">Выберите процессор</string>
+    <string name="label_ram_spinner">Выберите тип оперативной памяти</string>
+    <string name="label_ssd_spinner">Выберите тип накопителя SSD</string>
+
+
+
 </resources>

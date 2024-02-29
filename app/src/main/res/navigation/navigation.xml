@@ -1,4 +1,3 @@
-<?xml version="1.0" encoding="utf-8"?>
 <navigation xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
@@ -13,11 +12,19 @@
         <action
             android:id="@+id/action_mainlist_to_fragmentDetail"
             app:destination="@id/fragmentDetail2" />
+        <action
+            android:id="@+id/action_mainlist_to_buildfragment"
+            app:destination="@id/buildfragment" />
     </fragment>
     <fragment
         android:id="@+id/fragmentDetail2"
         android:name="com.example.kursapp.fragments.FragmentDetail"
         android:label="fragment_detail"
         tools:layout="@layout/fragment_detail" />
+    <fragment
+        android:id="@+id/buildfragment"
+        android:name="com.example.kursapp.fragments.Buildfragment"
+        android:label="fragment_build"
+        tools:layout="@layout/fragment_build" />
 
 </navigation>

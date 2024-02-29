@@ -14,23 +14,21 @@ import androidx.recyclerview.widget.RecyclerView
 import com.example.kursapp.Product
 import com.example.kursapp.ProductAdapter
 import com.example.kursapp.R
+import com.example.kursapp.databinding.FragmentMainlistBinding
 import com.google.firebase.database.*
 
 class mainlist : Fragment(), ProductAdapter.OnProductClickListener {
-    private lateinit var recyclerView: RecyclerView
+    private lateinit var binding: FragmentMainlistBinding
     private lateinit var productAdapter: ProductAdapter
     private lateinit var databaseReference: DatabaseReference
-    private lateinit var categorySpinner: Spinner
     private var selectedCategory: String? = null
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        val view = inflater.inflate(R.layout.fragment_mainlist, container, false)
-        recyclerView = view.findViewById(R.id.recyclerView)
-        categorySpinner = view.findViewById(R.id.categorySpinner)
-        return view
+        binding = FragmentMainlistBinding.inflate(inflater, container, false)
+        return binding.root
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
@@ -57,16 +55,16 @@ class mainlist : Fragment(), ProductAdapter.OnProductClickListener {
                     categories
                 )
                 spinnerAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item)
-                categorySpinner.adapter = spinnerAdapter
+                binding.categorySpinner.adapter = spinnerAdapter
 
                 // Восстанавливаем выбранную категорию, если она была сохранена
                 selectedCategory?.let { category ->
-                    val spinnerPosition = (categorySpinner.adapter as ArrayAdapter<String>).getPosition(category)
-                    categorySpinner.setSelection(spinnerPosition)
+                    val spinnerPosition = (binding.categorySpinner.adapter as ArrayAdapter<String>).getPosition(category)
+                    binding.categorySpinner.setSelection(spinnerPosition)
                 }
 
                 // Добавляем слушателя для выбора категории
-                categorySpinner.onItemSelectedListener =
+                binding.categorySpinner.onItemSelectedListener =
                     object : AdapterView.OnItemSelectedListener {
                         override fun onItemSelected(
                             parent: AdapterView<*>?,
@@ -122,8 +120,8 @@ class mainlist : Fragment(), ProductAdapter.OnProductClickListener {
 
         // Инициализируем RecyclerView
         productAdapter = ProductAdapter(emptyList(), this) // Передаем текущий фрагмент как обработчик нажатий
-        recyclerView.layoutManager = LinearLayoutManager(requireContext())
-        recyclerView.adapter = productAdapter
+        binding.recyclerView.layoutManager = LinearLayoutManager(requireContext())
+        binding.recyclerView.adapter = productAdapter
     }
 
     override fun onProductClick(product: Product) {
