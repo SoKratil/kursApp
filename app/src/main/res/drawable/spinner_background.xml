@@ -1,0 +1,9 @@
+<layer-list xmlns:android="http://schemas.android.com/apk/res/android">
+    <!-- Изображение стрелки -->
+
+    <item > <!-- Добавляем отступы справа и слева -->
+        <shape>
+            <solid android:color="#5182BABA" /> <!-- Цвет фона -->
+        </shape>
+    </item>
+</layer-list>

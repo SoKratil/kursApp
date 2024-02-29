@@ -26,6 +26,8 @@
         android:layout_height="wrap_content"
         android:minWidth="200dp"
         android:minHeight="48dp"
+
+        android:background="@drawable/spinner_background"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/textViewGraphicsCards" />
@@ -45,6 +47,7 @@
         android:layout_height="wrap_content"
         android:minWidth="200dp"
         android:minHeight="48dp"
+        android:background="@drawable/spinner_background"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/textViewMotherboards" />
@@ -64,6 +67,7 @@
         android:layout_height="wrap_content"
         android:minWidth="200dp"
         android:minHeight="48dp"
+        android:background="@drawable/spinner_background"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/textViewProcessors" />
@@ -83,6 +87,7 @@
         android:layout_height="wrap_content"
         android:minWidth="200dp"
         android:minHeight="48dp"
+        android:background="@drawable/spinner_background"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/textViewRAM" />
@@ -102,6 +107,7 @@
         android:layout_height="wrap_content"
         android:minWidth="200dp"
         android:minHeight="48dp"
+        android:background="@drawable/spinner_background"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/textViewSSD" />

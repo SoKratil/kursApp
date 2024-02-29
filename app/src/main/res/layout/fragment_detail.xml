@@ -66,19 +66,4 @@
         android:textSize="18sp" />
 
 
-    <ImageButton
-        android:id="@+id/backtomainButton"
-        android:layout_width="150dp"
-        android:layout_height="75dp"
-        android:layout_alignParentBottom="true"
-        android:layout_centerHorizontal="true"
-        android:layout_marginBottom="16dp"
-        android:src="@drawable/ic_arrow_back"
-        android:background="@null"
-        android:padding="8dp"
-        android:scaleType="fitCenter"
-        />
-
-
-
 </RelativeLayout>

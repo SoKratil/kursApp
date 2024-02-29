@@ -25,6 +25,10 @@
         android:id="@+id/buildfragment"
         android:name="com.example.kursapp.fragments.Buildfragment"
         android:label="fragment_build"
-        tools:layout="@layout/fragment_build" />
+        tools:layout="@layout/fragment_build" >
+        <action
+            android:id="@+id/action_buildfragment_to_mainlist"
+            app:destination="@id/mainlist" />
+    </fragment>
 
 </navigation>

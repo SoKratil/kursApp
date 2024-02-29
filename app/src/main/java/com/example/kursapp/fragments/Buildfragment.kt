@@ -42,7 +42,21 @@ class Buildfragment : Fragment() {
         // Загрузка данных о продуктах из базы данных
         databaseReference.addListenerForSingleValueEvent(object : ValueEventListener {
             override fun onDataChange(dataSnapshot: DataSnapshot) {
-                products = dataSnapshot.value as Map<String, Map<String, Product>>
+                // Переменная для хранения данных о продуктах из Firebase
+                val productsMap = dataSnapshot.value as? Map<String, Map<String, Map<String, Any>>>?
+
+                // Преобразование данных из Firebase в Map<String, Map<String, Product>>
+                products = productsMap?.mapValues { entry ->
+                    entry.value.mapValues { (_, value) ->
+                        // Преобразование Map<String, Any> в Product
+                        Product(
+                            name = value["name"] as? String ?: "",
+                            price = (value["price"] as? Double) ?: 0.0,
+                            description = value["description"] as? String ?: "",
+                            imgUrl = value["imgUrl"] as? String ?: ""
+                        )
+                    }
+                } ?: emptyMap()
 
                 // Настройка спиннеров после загрузки данных
                 setupSpinners()
@@ -63,14 +77,14 @@ class Buildfragment : Fragment() {
             requireContext(),
             android.R.layout.simple_spinner_item,
             mutableListOf<String>().apply {
-                add("") // Добавляем пустой элемент в начало списка
+                add("Выбрать") // Добавляем пустой элемент в начало списка
                 addAll(products["graphics_cards"]?.values?.map { it.name } ?: emptyList())
             }
         )
         binding.spinnerGraphicsCards.adapter = graphicsCardAdapter
         binding.spinnerGraphicsCards.onItemSelectedListener = object : AdapterView.OnItemSelectedListener {
             override fun onItemSelected(parent: AdapterView<*>?, view: View?, position: Int, id: Long) {
-                selectedGraphicsCard = if (position > 0) { // Проверяем, чтобы не добавить пустой элемент в сумму
+                selectedGraphicsCard = if (position > 0) {
                     products["graphics_cards"]?.values?.elementAtOrNull(position - 1)
                 } else {
                     null
@@ -89,7 +103,7 @@ class Buildfragment : Fragment() {
             requireContext(),
             android.R.layout.simple_spinner_item,
             mutableListOf<String>().apply {
-                add("") // Добавляем пустой элемент в начало списка
+                add("Выбрать") // Добавляем пустой элемент в начало списка
                 addAll(products["motherboards"]?.values?.map { it.name } ?: emptyList())
             }
         )
@@ -115,7 +129,7 @@ class Buildfragment : Fragment() {
             requireContext(),
             android.R.layout.simple_spinner_item,
             mutableListOf<String>().apply {
-                add("") // Добавляем пустой элемент в начало списка
+                add("Выбрать") // Добавляем пустой элемент в начало списка
                 addAll(products["processors"]?.values?.map { it.name } ?: emptyList())
             }
         )
@@ -141,7 +155,7 @@ class Buildfragment : Fragment() {
             requireContext(),
             android.R.layout.simple_spinner_item,
             mutableListOf<String>().apply {
-                add("") // Добавляем пустой элемент в начало списка
+                add("Выбрать") // Добавляем пустой элемент в начало списка
                 addAll(products["ram"]?.values?.map { it.name } ?: emptyList())
             }
         )
@@ -167,7 +181,7 @@ class Buildfragment : Fragment() {
             requireContext(),
             android.R.layout.simple_spinner_item,
             mutableListOf<String>().apply {
-                add("") // Добавляем пустой элемент в начало списка
+                add("Выбрать") // Добавляем пустой элемент в начало списка
                 addAll(products["ssd"]?.values?.map { it.name } ?: emptyList())
             }
         )

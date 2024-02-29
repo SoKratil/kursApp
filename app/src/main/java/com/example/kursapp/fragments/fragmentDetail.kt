@@ -40,10 +40,7 @@ class FragmentDetail : Fragment() {
             // Загрузка изображения с помощью Picasso
             Picasso.get().load(product.imgUrl).into(binding.productImageView)
 
-            binding.backtomainButton.setOnClickListener {
-                // Возвращаемся на предыдущий экран
-                findNavController().popBackStack()
-            }
+
         }
     }
 
