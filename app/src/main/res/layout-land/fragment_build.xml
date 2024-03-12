@@ -1,0 +1,236 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:viewBindingIgnore="false"
+    tools:context=".fragments.Buildfragment">
+
+    <View
+        android:id="@+id/rectangle"
+        android:layout_width="match_parent"
+        android:layout_height="?attr/actionBarSize"
+        app:layout_constraintTop_toTopOf="parent"
+        android:background="#3E000000"
+        tools:visibility="visible"
+        android:visibility="gone" />
+
+    <ScrollView
+        android:id="@+id/ScrollView1"
+        android:layout_width="match_parent"
+        android:layout_height="166dp"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="16dp"
+        android:layout_marginEnd="16dp"
+
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/rectangle">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+            <!-- Группа элементов для каждого атрибута -->
+            <!-- Графические карты -->
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="8dp"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:id="@+id/textViewGraphicsCards"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="start"
+                    android:layout_marginEnd="8dp"
+                    android:layout_weight="1"
+                    android:gravity="start"
+                    android:text="@string/label_graphics_cards" />
+
+                <Spinner
+                    android:id="@+id/spinnerGraphicsCards"
+                    android:layout_width="400dp"
+                    android:layout_height="wrap_content"
+
+                    android:background="@drawable/spinner_background"
+
+                    android:minHeight="48dp" />
+
+            </LinearLayout>
+
+            <!-- Материнские платы -->
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="8dp"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:id="@+id/textViewMotherboards"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="start"
+                    android:layout_marginEnd="8dp"
+                    android:layout_weight="1"
+                    android:gravity="start"
+                    android:text="@string/label_motherboards" />
+
+                <Spinner
+                    android:id="@+id/spinnerMotherboards"
+                    android:layout_width="400dp"
+                    android:layout_height="wrap_content"
+
+                    android:background="@drawable/spinner_background"
+
+                    android:minHeight="48dp" />
+
+            </LinearLayout>
+
+            <!-- Процессоры -->
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="8dp"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:id="@+id/textViewProcessors"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="start"
+                    android:layout_marginEnd="8dp"
+                    android:layout_weight="1"
+                    android:gravity="start"
+                    android:text="@string/label_processors" />
+
+                <Spinner
+                    android:id="@+id/spinnerProcessors"
+                    android:layout_width="400dp"
+                    android:layout_height="wrap_content"
+
+                    android:background="@drawable/spinner_background"
+
+                    android:minHeight="48dp" />
+
+            </LinearLayout>
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="8dp"
+                android:orientation="horizontal">
+            <!-- Оперативная память (RAM) -->
+            <TextView
+                android:id="@+id/textViewRAM"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="start"
+                android:layout_marginEnd="8dp"
+                android:layout_weight="1"
+                android:gravity="start"
+                android:text="@string/label_ram" />
+
+
+
+                <Spinner
+                    android:id="@+id/spinnerRAM"
+                    android:layout_width="400dp"
+                    android:layout_height="wrap_content"
+
+                    android:background="@drawable/spinner_background"
+
+                    android:minHeight="48dp" />
+
+            </LinearLayout>
+
+            <!-- SSD -->
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="8dp"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:id="@+id/textViewSSD"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="start"
+                    android:layout_marginEnd="8dp"
+                    android:layout_weight="1"
+                    android:gravity="start"
+                    android:text="@string/label_ssd" />
+
+                <Spinner
+                    android:id="@+id/spinnerSSD"
+                    android:layout_width="400dp"
+                    android:layout_height="wrap_content"
+
+                    android:background="@drawable/spinner_background"
+
+                    android:minHeight="48dp" />
+
+            </LinearLayout>
+
+        </LinearLayout>
+
+    </ScrollView>
+
+    <LinearLayout
+        android:id="@+id/container"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        app:layout_constraintTop_toBottomOf="@id/ScrollView1"
+
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        android:layout_marginTop="8dp"
+        android:layout_marginBottom="16dp">
+
+        <!-- Карточка -->
+        <androidx.cardview.widget.CardView
+            android:id="@+id/cardViewTotalPrice"
+            android:layout_width="330dp"
+            android:layout_height="86dp"
+            android:layout_marginEnd="8dp"
+            app:cardCornerRadius="8dp"
+            app:cardElevation="4dp">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:padding="16dp">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Сумма:"
+                    android:textSize="18sp" />
+
+                <TextView
+                    android:id="@+id/textViewTotalPrice"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="0"
+                    android:textSize="24sp"
+                    android:textStyle="bold"
+                    android:layout_marginStart="8dp"/>
+            </LinearLayout>
+
+        </androidx.cardview.widget.CardView>
+
+        <!-- Кнопка "Сохранить в базу данных" -->
+        <Button
+            android:id="@+id/buttonSaveToDatabase"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Сохранить в базу данных" />
+
+    </LinearLayout>
+
+</androidx.constraintlayout.widget.ConstraintLayout>

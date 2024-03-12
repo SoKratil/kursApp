@@ -6,13 +6,24 @@
     tools:viewBindingIgnore="false"
     tools:context=".fragments.FragmentDetail">
 
+    <View
+        android:id="@+id/rectanglefr"
+        android:layout_width="match_parent"
+        android:layout_height="?attr/actionBarSize"
+        app:layout_constraintTop_toTopOf="parent"
+        android:background="#3E000000"
+        tools:visibility="visible"
+        android:visibility="gone" />
+
     <!-- Фотография продукта -->
     <androidx.cardview.widget.CardView
         android:id="@+id/productImageViewCard"
         android:layout_width="300dp"
         android:layout_height="300dp"
+        android:layout_below="@+id/rectanglefr"
+
+
         android:layout_centerHorizontal="true"
-        android:layout_alignParentTop="true"
         android:layout_marginStart="16dp"
         android:layout_marginTop="16dp"
         android:layout_marginEnd="16dp"
@@ -31,18 +42,19 @@
     </androidx.cardview.widget.CardView>
 
     <!-- Название продукта -->
+
+    <!-- Описание продукта -->
     <TextView
         android:id="@+id/productNameTextView"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_below="@id/productImageViewCard"
-        android:layout_marginTop="16dp"
         android:layout_marginStart="16dp"
+        android:layout_marginTop="12dp"
         android:layout_marginEnd="16dp"
         android:text="Product Name"
         android:textSize="24sp" />
 
-    <!-- Описание продукта -->
     <TextView
         android:id="@+id/productDescriptionTextView"
         android:layout_width="match_parent"

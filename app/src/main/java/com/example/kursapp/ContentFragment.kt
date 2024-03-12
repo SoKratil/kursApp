@@ -1,6 +1,8 @@
 package com.example.kursapp
 
+import android.content.res.Configuration
 import android.os.Bundle
+import android.view.View
 import android.widget.ImageButton
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
@@ -32,6 +34,12 @@ class ContentFragment : AppCompatActivity() {
         binding = FragmentContentBinding.inflate(layoutInflater)
         val view = binding.root
         setContentView(view)
+        if (resources.configuration.orientation == Configuration.ORIENTATION_LANDSCAPE) {
+            // Если устройство в горизонтальной ориентации, скрываем верхнюю панель
+            window.decorView.systemUiVisibility = View.SYSTEM_UI_FLAG_FULLSCREEN
+            supportActionBar?.hide()
+        }
+
 
         // Настройка тулбара
         setSupportActionBar(binding.appBarLayout.toolbar)

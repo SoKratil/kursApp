@@ -7,6 +7,7 @@ import android.view.ViewGroup
 import android.widget.AdapterView
 import android.widget.ArrayAdapter
 import androidx.fragment.app.Fragment
+import androidx.fragment.app.viewModels
 import com.example.kursapp.Product
 import com.example.kursapp.databinding.FragmentBuildBinding
 import com.google.firebase.database.*
@@ -14,7 +15,7 @@ import com.google.firebase.database.*
 class Buildfragment : Fragment() {
     private var _binding: FragmentBuildBinding? = null
     private val binding get() = _binding!!
-
+    private val viewModel: BuildFragmentViewModel by viewModels()
     private lateinit var databaseReference: DatabaseReference
 
     private var products: Map<String, Map<String, Product>> = emptyMap()
@@ -69,6 +70,35 @@ class Buildfragment : Fragment() {
 
         // Настройка кнопки "Сохранить в базу данных"
         setupSaveButton()
+        viewModel.selectedGraphicsCard.observe(viewLifecycleOwner) { product ->
+            // Обновление выбранной графической карты
+            selectedGraphicsCard = product
+            calculateTotalPrice()
+        }
+
+        viewModel.selectedMotherboard.observe(viewLifecycleOwner) { product ->
+            // Обновление выбранной материнской платы
+            selectedMotherboard = product
+            calculateTotalPrice()
+        }
+
+        viewModel.selectedProcessor.observe(viewLifecycleOwner) { product ->
+            // Обновление выбранного процессора
+            selectedProcessor = product
+            calculateTotalPrice()
+        }
+
+        viewModel.selectedRAM.observe(viewLifecycleOwner) { product ->
+            // Обновление выбранной оперативной памяти
+            selectedRAM = product
+            calculateTotalPrice()
+        }
+
+        viewModel.selectedSSD.observe(viewLifecycleOwner) { product ->
+            // Обновление выбранного SSD
+            selectedSSD = product
+            calculateTotalPrice()
+        }
     }
 
     private fun setupSpinners() {
@@ -98,6 +128,7 @@ class Buildfragment : Fragment() {
             }
         }
 
+
         // Настройка адаптера для спиннера материнских плат
         val motherboardAdapter = ArrayAdapter(
             requireContext(),
@@ -123,6 +154,7 @@ class Buildfragment : Fragment() {
                 calculateTotalPrice()
             }
         }
+
 
         // Настройка адаптера для спиннера процессоров
         val processorAdapter = ArrayAdapter(
@@ -201,6 +233,33 @@ class Buildfragment : Fragment() {
                 calculateTotalPrice()
             }
         }
+
+
+// Настройка спиннера графических карт
+        viewModel.selectedGraphicsCard.value?.let { product ->
+            binding.spinnerGraphicsCards.setSelection(graphicsCardAdapter.getPosition(product.name))
+        }
+
+// Настройка спиннера материнских плат
+        viewModel.selectedMotherboard.value?.let { product ->
+            binding.spinnerMotherboards.setSelection(motherboardAdapter.getPosition(product.name))
+        }
+
+// Настройка спиннера процессоров
+        viewModel.selectedProcessor.value?.let { product ->
+            binding.spinnerProcessors.setSelection(processorAdapter.getPosition(product.name))
+        }
+
+// Настройка спиннера оперативной памяти (RAM)
+        viewModel.selectedRAM.value?.let { product ->
+            binding.spinnerRAM.setSelection(ramAdapter.getPosition(product.name))
+        }
+
+// Настройка спиннера SSD
+        viewModel.selectedSSD.value?.let { product ->
+            binding.spinnerSSD.setSelection(ssdAdapter.getPosition(product.name))
+        }
+
     }
 
 
@@ -229,8 +288,14 @@ class Buildfragment : Fragment() {
         }
     }
 
+
     override fun onDestroyView() {
         super.onDestroyView()
+        viewModel.setSelectedGraphicsCard(selectedGraphicsCard)
+        viewModel.setSelectedMotherboard(selectedMotherboard)
+        viewModel.setSelectedProcessor(selectedProcessor)
+        viewModel.setSelectedRAM(selectedRAM)
+        viewModel.setSelectedSSD(selectedSSD)
         _binding = null
     }
 }

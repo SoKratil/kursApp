@@ -5,12 +5,17 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:layout_marginStart="16dp"
-    android:layout_marginTop="16dp"
-    android:layout_marginEnd="16dp"
-    android:layout_marginBottom="16dp"
     tools:viewBindingIgnore="false"
     tools:context=".fragments.Buildfragment">
+
+    <View
+        android:id="@+id/rectangle"
+        android:layout_width="match_parent"
+        android:layout_height="?attr/actionBarSize"
+        app:layout_constraintTop_toTopOf="parent"
+        android:background="#3E000000"
+        tools:visibility="visible"
+        android:visibility="gone" />
 
     <TextView
         android:id="@+id/textViewGraphicsCards"
@@ -18,7 +23,9 @@
         android:layout_height="wrap_content"
         android:text="@string/label_graphics_cards"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toBottomOf="@id/rectangle"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="16dp" />
 
     <Spinner
         android:id="@+id/spinnerGraphicsCards"
@@ -26,11 +33,13 @@
         android:layout_height="wrap_content"
         android:minWidth="200dp"
         android:minHeight="48dp"
-
         android:background="@drawable/spinner_background"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/textViewGraphicsCards" />
+        app:layout_constraintTop_toBottomOf="@id/textViewGraphicsCards"
+        android:layout_marginStart="16dp"
+        android:layout_marginEnd="16dp"
+        android:layout_marginTop="4dp" />
 
     <!-- Материнские платы -->
     <TextView
@@ -39,7 +48,9 @@
         android:layout_height="wrap_content"
         android:text="@string/label_motherboards"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/spinnerGraphicsCards" />
+        app:layout_constraintTop_toBottomOf="@id/spinnerGraphicsCards"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="4dp" />
 
     <Spinner
         android:id="@+id/spinnerMotherboards"
@@ -50,7 +61,10 @@
         android:background="@drawable/spinner_background"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/textViewMotherboards" />
+        app:layout_constraintTop_toBottomOf="@id/textViewMotherboards"
+        android:layout_marginStart="16dp"
+        android:layout_marginEnd="16dp"
+        android:layout_marginTop="4dp" />
 
     <!-- Процессоры -->
     <TextView
@@ -59,7 +73,9 @@
         android:layout_height="wrap_content"
         android:text="@string/label_processors"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/spinnerMotherboards" />
+        app:layout_constraintTop_toBottomOf="@id/spinnerMotherboards"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="4dp" />
 
     <Spinner
         android:id="@+id/spinnerProcessors"
@@ -70,7 +86,10 @@
         android:background="@drawable/spinner_background"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/textViewProcessors" />
+        app:layout_constraintTop_toBottomOf="@id/textViewProcessors"
+        android:layout_marginStart="16dp"
+        android:layout_marginEnd="16dp"
+        android:layout_marginTop="4dp" />
 
     <!-- Оперативная память (RAM) -->
     <TextView
@@ -79,7 +98,9 @@
         android:layout_height="wrap_content"
         android:text="@string/label_ram"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/spinnerProcessors" />
+        app:layout_constraintTop_toBottomOf="@id/spinnerProcessors"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="4dp" />
 
     <Spinner
         android:id="@+id/spinnerRAM"
@@ -90,7 +111,10 @@
         android:background="@drawable/spinner_background"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/textViewRAM" />
+        app:layout_constraintTop_toBottomOf="@id/textViewRAM"
+        android:layout_marginStart="16dp"
+        android:layout_marginEnd="16dp"
+        android:layout_marginTop="4dp" />
 
     <!-- SSD -->
     <TextView
@@ -99,7 +123,9 @@
         android:layout_height="wrap_content"
         android:text="@string/label_ssd"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/spinnerRAM" />
+        app:layout_constraintTop_toBottomOf="@id/spinnerRAM"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="4dp" />
 
     <Spinner
         android:id="@+id/spinnerSSD"
@@ -110,25 +136,31 @@
         android:background="@drawable/spinner_background"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/textViewSSD" />
+        app:layout_constraintTop_toBottomOf="@id/textViewSSD"
+        android:layout_marginStart="16dp"
+        android:layout_marginEnd="16dp"
+        android:layout_marginTop="4dp" />
 
     <androidx.cardview.widget.CardView
         android:id="@+id/cardViewTotalPrice"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="16dp"
         app:cardCornerRadius="8dp"
         app:cardElevation="4dp"
         app:layout_constraintTop_toBottomOf="@id/spinnerSSD"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent">
+        app:layout_constraintStart_toStartOf="parent"
+        android:layout_marginStart="16dp"
+        android:layout_marginEnd="16dp"
+        android:layout_marginTop="8dp">
 
         <!-- Карточка с суммой -->
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="vertical"
-            android:padding="16dp">
+            android:padding="16dp"
+            >
 
             <TextView
                 android:layout_width="wrap_content"
@@ -153,12 +185,11 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Сохранить в базу данных"
-        android:layout_marginTop="16dp"
         app:layout_constraintTop_toBottomOf="@id/cardViewTotalPrice"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="parent" />
-
-
-
+        app:layout_constraintEnd_toEndOf="parent"
+        android:layout_marginTop="4dp"
+        android:layout_marginStart="16dp"
+        android:layout_marginEnd="16dp" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
