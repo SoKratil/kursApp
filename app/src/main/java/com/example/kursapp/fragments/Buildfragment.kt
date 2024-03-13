@@ -6,18 +6,25 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.AdapterView
 import android.widget.ArrayAdapter
+import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
+import androidx.lifecycle.lifecycleScope
 import com.example.kursapp.Product
 import com.example.kursapp.databinding.FragmentBuildBinding
+import com.example.kursapp.db.AppDatabase
+import com.example.kursapp.db.ProductEntity
 import com.google.firebase.database.*
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.launch
+import kotlinx.coroutines.withContext
 
 class Buildfragment : Fragment() {
     private var _binding: FragmentBuildBinding? = null
     private val binding get() = _binding!!
     private val viewModel: BuildFragmentViewModel by viewModels()
     private lateinit var databaseReference: DatabaseReference
-
+    private lateinit var appDatabase: AppDatabase
     private var products: Map<String, Map<String, Product>> = emptyMap()
     private var selectedGraphicsCard: Product? = null
     private var selectedMotherboard: Product? = null
@@ -36,6 +43,9 @@ class Buildfragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+
+        // Инициализация базы данных Room
+        appDatabase = AppDatabase.getInstance(requireContext())
 
         // Инициализация базы данных Firebase
         databaseReference = FirebaseDatabase.getInstance().reference.child("products")
@@ -283,10 +293,70 @@ class Buildfragment : Fragment() {
 
     private fun setupSaveButton() {
         binding.buttonSaveToDatabase.setOnClickListener {
-            // Здесь можно реализовать логику сохранения выбранных продуктов в базу данных
-            // Например, можно добавить выбранные продукты в другую часть базы данных или отправить на сервер
+            // Проверяем, выбран ли элемент в каждом спиннере
+            if (selectedGraphicsCard == null || selectedMotherboard == null ||
+                selectedProcessor == null || selectedRAM == null || selectedSSD == null) {
+                // Если какой-либо из спиннеров не имеет выбранного элемента, выводим сообщение об ошибке
+                showToast("Пожалуйста, выберите продукты для всех компонентов перед сохранением.")
+                return@setOnClickListener
+            }
+
+            // Запускаем корутину для выполнения операции в фоновом потоке
+            lifecycleScope.launch {
+                // Получаем максимальный assemblyId из базы данных в фоновом режиме
+                val maxAssemblyId = withContext(Dispatchers.IO) {
+                    appDatabase.productDao().getMaxAssemblyId()
+                }
+
+                // Вычисляем новый assemblyId
+                val newAssemblyId = maxAssemblyId?.plus(1L) ?: 1L
+
+                // Создаем объекты ProductEntity для каждого выбранного товара с новым assemblyId
+                val productsToSave = mutableListOf<ProductEntity>()
+
+                selectedGraphicsCard?.let { product ->
+                    productsToSave.add(ProductEntity(name = product.name, price = product.price, assemblyId = newAssemblyId))
+                }
+                selectedMotherboard?.let { product ->
+                    productsToSave.add(ProductEntity(name = product.name, price = product.price, assemblyId = newAssemblyId))
+                }
+                selectedProcessor?.let { product ->
+                    productsToSave.add(ProductEntity(name = product.name, price = product.price, assemblyId = newAssemblyId))
+                }
+                selectedRAM?.let { product ->
+                    productsToSave.add(ProductEntity(name = product.name, price = product.price, assemblyId = newAssemblyId))
+                }
+                selectedSSD?.let { product ->
+                    productsToSave.add(ProductEntity(name = product.name, price = product.price, assemblyId = newAssemblyId))
+                }
+
+                // Вставляем данные в базу данных в фоновом режиме
+                insertProductsToDatabase(productsToSave)
+
+                // Отображаем уведомление об успешном сохранении
+                showToast("Продукты успешно сохранены в базу данных")
+            }
         }
     }
+
+
+    private fun showToast(message: String) {
+        // Создаем и отображаем уведомление Toast
+        Toast.makeText(requireContext(), message, Toast.LENGTH_SHORT).show()
+    }
+
+    private suspend  fun insertProductsToDatabase(products: List<ProductEntity>) {
+        withContext(Dispatchers.IO) {
+            // Получаем DAO для доступа к базе данных
+            val productDao = appDatabase.productDao()
+
+            // Вставляем продукты в базу данных
+            for (product in products) {
+                productDao.insertProduct(product)
+            }
+        }
+    }
+
 
 
     override fun onDestroyView() {

@@ -6,7 +6,7 @@ import android.view.ViewGroup
 import android.widget.ImageView
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
-import com.example.kursapp.R
+
 import com.squareup.picasso.Picasso
 
 class ProductAdapter(

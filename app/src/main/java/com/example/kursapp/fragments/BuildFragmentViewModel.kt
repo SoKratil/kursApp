@@ -6,6 +6,12 @@ import androidx.lifecycle.ViewModel
 import com.example.kursapp.Product
 
 class BuildFragmentViewModel : ViewModel() {
+
+
+
+
+
+
     private val _selectedGraphicsCard = MutableLiveData<Product?>()
     val selectedGraphicsCard: LiveData<Product?> = _selectedGraphicsCard
 
