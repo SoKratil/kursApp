@@ -15,6 +15,9 @@
         <action
             android:id="@+id/action_mainlist_to_buildfragment"
             app:destination="@id/buildfragment" />
+        <action
+            android:id="@+id/action_mainlist_to_dbResViewFragment"
+            app:destination="@id/dbResViewFragment" />
     </fragment>
     <fragment
         android:id="@+id/fragmentDetail2"
@@ -28,6 +31,15 @@
         tools:layout="@layout/fragment_build" >
         <action
             android:id="@+id/action_buildfragment_to_mainlist"
+            app:destination="@id/mainlist" />
+    </fragment>
+    <fragment
+        android:id="@+id/dbResViewFragment"
+        android:name="com.example.kursapp.fragments.DbResViewFragment"
+        android:label="fragment_db_resview"
+        tools:layout="@layout/fragment_db_resview" >
+        <action
+            android:id="@+id/action_dbResViewFragment_to_mainlist"
             app:destination="@id/mainlist" />
     </fragment>
 

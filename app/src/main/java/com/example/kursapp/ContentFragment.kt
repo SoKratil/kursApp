@@ -53,7 +53,7 @@ class ContentFragment : AppCompatActivity() {
             setOf(
                 R.id.mainlist,
                 R.id.buildfragment,
-
+                R.id.dbResViewFragment,
                 ), drawerLayout
         )
         setupActionBarWithNavController(navController, appBarConfiguration)
@@ -63,6 +63,7 @@ class ContentFragment : AppCompatActivity() {
             setToolbarTitle(when (destination.id) {
                 R.id.mainlist -> "Главная"
                 R.id.buildfragment -> "Конструктор ПК"
+                R.id.dbResViewFragment -> "Сохраненные сборки"
                 else -> "Продукт"
             })
         }
@@ -70,7 +71,7 @@ class ContentFragment : AppCompatActivity() {
         navView.setNavigationItemSelectedListener { menuItem ->
             when (menuItem.itemId) {
                 // Обработка нажатия на элемент "mainlist"
-                R.id.mainlist, R.id.buildfragment-> {
+                R.id.mainlist, R.id.buildfragment,R.id.dbResViewFragment -> {
                     navController.navigate(menuItem.itemId)
                     drawerLayout.closeDrawer(GravityCompat.START)
 
@@ -79,11 +80,7 @@ class ContentFragment : AppCompatActivity() {
 
 
 
-                R.id.menu_item3 -> {
-                    // Добавьте здесь код для обработки нажатия на элемент "saved_builds"
-                    Toast.makeText(this, "Сохраненные сборки Clicked", Toast.LENGTH_SHORT).show()
-                    true
-                }
+
                 // Добавьте обработку других элементов, если необходимо
                 else -> false
             }

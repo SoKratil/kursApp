@@ -6,7 +6,7 @@
         android:id="@+id/buildfragment"
         android:title="Конструктор ПК"/>
     <item
-        android:id="@+id/menu_item3"
+        android:id="@+id/dbResViewFragment"
         android:title="Сохраненные сборки"/>
 
 </menu>

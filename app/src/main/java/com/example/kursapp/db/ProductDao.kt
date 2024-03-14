@@ -24,5 +24,8 @@ interface ProductDao {
     @Query("SELECT MAX(assemblyId) FROM products")
     fun getMaxAssemblyId(): Int?
 
+    @Query("SELECT COUNT(DISTINCT assemblyId) FROM products")
+    fun getAssemblyCount(): Int
+
 }
 
