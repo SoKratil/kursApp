@@ -7,7 +7,8 @@ import android.view.ViewGroup
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 
-class DbAdapterResView(private val context: Context, private val dataList: List<Data>) :
+class DbAdapterResView(private val context: Context, private val dataList: List<List<Product>>, private val maxAssemblyId: Int) :
+
     RecyclerView.Adapter<DbAdapterResView.ViewHolder>() {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
@@ -17,14 +18,14 @@ class DbAdapterResView(private val context: Context, private val dataList: List<
     }
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
-        val data = dataList[position]
+        val products = dataList[position]
+        val assemblyNumber = position + 1
 
-        holder.titleTextView.text = data.title
-        holder.totalPriceTextView.text = "Total Price: ${data.totalPrice}"
+        holder.titleTextView.text = "Номер сборки: $assemblyNumber"
+        holder.totalPriceTextView.text = "${products.sumByDouble { it.price.toDouble() }}"
 
-        // Set product data
-        for (i in 0 until data.products.size) {
-            val product = data.products[i]
+        for (i in 0 until minOf(products.size, 5)) {
+            val product = products[i]
             when (i) {
                 0 -> {
                     holder.productName1TextView.text = product.name
@@ -69,7 +70,6 @@ class DbAdapterResView(private val context: Context, private val dataList: List<
         val productPrice5TextView: TextView = itemView.findViewById(R.id.textViewProductPrice5)
     }
 
-    data class Data(val title: String, val totalPrice: String, val products: List<Product>)
-
     data class Product(val name: String, val price: String)
+
 }
