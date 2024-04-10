@@ -3,9 +3,11 @@ package com.example.kursapp
 import android.content.res.Configuration
 import android.os.Bundle
 import android.view.View
+import android.widget.Switch
 
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
+import androidx.appcompat.app.AppCompatDelegate
 
 import androidx.core.view.GravityCompat
 import androidx.drawerlayout.widget.DrawerLayout
@@ -31,9 +33,11 @@ class ContentFragment : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+
         binding = FragmentContentBinding.inflate(layoutInflater)
         val view = binding.root
         setContentView(view)
+
         if (resources.configuration.orientation == Configuration.ORIENTATION_LANDSCAPE) {
             // Если устройство в горизонтальной ориентации, скрываем верхнюю панель
             window.decorView.systemUiVisibility = View.SYSTEM_UI_FLAG_FULLSCREEN
@@ -77,6 +81,33 @@ class ContentFragment : AppCompatActivity() {
 
                     true
                 }
+
+                R.id.theme_switch -> {
+                    // Получаем текущий режим ночи
+                    val currentNightMode = resources.configuration.uiMode and Configuration.UI_MODE_NIGHT_MASK
+                    // Определяем новый режим ночи
+                    val newNightMode = when (currentNightMode) {
+                        Configuration.UI_MODE_NIGHT_YES -> {
+                            AppCompatDelegate.MODE_NIGHT_NO
+                        }
+                        Configuration.UI_MODE_NIGHT_NO -> {
+                            AppCompatDelegate.MODE_NIGHT_YES
+                        }
+                        else -> {
+                            // В случае, если система не определила режим ночи, можно просто сменить на противоположный
+                            AppCompatDelegate.MODE_NIGHT_YES
+                        }
+                    }
+                    // Устанавливаем новый режим ночи
+                    AppCompatDelegate.setDefaultNightMode(newNightMode)
+                    // Применяем изменения темы
+                    delegate.applyDayNight()
+                    // Сообщаем об успешном изменении темы
+                    Toast.makeText(this, "Тема изменена", Toast.LENGTH_SHORT).show()
+                    true
+                }
+
+
 
 
 

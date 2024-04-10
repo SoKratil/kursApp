@@ -1,4 +1,5 @@
-<menu xmlns:android="http://schemas.android.com/apk/res/android">
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
     <item
         android:id="@+id/mainlist"
         android:title="Главная"/>
@@ -8,5 +9,12 @@
     <item
         android:id="@+id/dbResViewFragment"
         android:title="Сохраненные сборки"/>
+    <item
+        android:id="@+id/theme_switch"
+        android:title="Тема"
+
+        app:showAsAction="never"
+        />
+
 
 </menu>

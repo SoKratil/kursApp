@@ -7,21 +7,27 @@ import android.view.ViewGroup
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 
-class DbAdapterResView(private val context: Context, private val dataList: List<List<Product>>, private val maxAssemblyId: Int) :
+class DbAdapterResView(
+    private val context: Context,
+    private val dataList: List<List<Product>>,
+    private val assemblyIds: List<Int>,
+    private val itemClickListener: OnItemClickListener
+) : RecyclerView.Adapter<DbAdapterResView.ViewHolder>() {
 
-    RecyclerView.Adapter<DbAdapterResView.ViewHolder>() {
+    interface OnItemClickListener {
+        fun onItemClick(assemblyId: Int)
+    }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
-        val view = LayoutInflater.from(parent.context)
-            .inflate(R.layout.db_product_item, parent, false)
+        val view = LayoutInflater.from(parent.context).inflate(R.layout.db_product_item, parent, false)
         return ViewHolder(view)
     }
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
         val products = dataList[position]
-        val assemblyNumber = position + 1
+        val assemblyId = assemblyIds[position]
 
-        holder.titleTextView.text = "Номер сборки: $assemblyNumber"
+        holder.titleTextView.text = "Номер сборки: $assemblyId"
         holder.totalPriceTextView.text = "${products.sumByDouble { it.price.toDouble() }}"
 
         for (i in 0 until minOf(products.size, 5)) {
@@ -49,6 +55,10 @@ class DbAdapterResView(private val context: Context, private val dataList: List<
                 }
             }
         }
+
+        holder.itemView.setOnClickListener {
+            itemClickListener.onItemClick(assemblyId)
+        }
     }
 
     override fun getItemCount(): Int {
@@ -71,5 +81,6 @@ class DbAdapterResView(private val context: Context, private val dataList: List<
     }
 
     data class Product(val name: String, val price: String)
+
 
 }

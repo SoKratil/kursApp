@@ -18,14 +18,21 @@ interface ProductDao {
     fun getProductsForAssembly(assemblyId: Long): List<ProductEntity>
 
     // Дополнительная команда для удаления продуктов для определенной сборки
-    @Query("DELETE FROM products WHERE assemblyId = :assemblyId")
-    fun deleteProductsForAssembly(assemblyId: Long)
+
 
     @Query("SELECT MAX(assemblyId) FROM products")
     fun getMaxAssemblyId(): Int?
 
+    // В вашем ProductDao.kt
+
+    @Query("SELECT DISTINCT assemblyId FROM products")
+    fun getUniqueAssemblyIds(): List<Long>
+
+
     @Query("SELECT COUNT(DISTINCT assemblyId) FROM products")
     fun getAssemblyCount(): Int
 
+    @Query("DELETE FROM products WHERE assemblyId = :assemblyId")
+    fun deleteProductsByAssemblyId(assemblyId: Int)
 }
 
