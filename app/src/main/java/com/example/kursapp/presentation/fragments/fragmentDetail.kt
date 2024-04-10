@@ -1,4 +1,4 @@
-package com.example.kursapp.fragments
+package com.example.kursapp.presentation.fragments
 
 import android.os.Bundle
 import androidx.fragment.app.Fragment
@@ -6,7 +6,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 
-import com.example.kursapp.Product
+import com.example.kursapp.presentation.Product
 import com.example.kursapp.databinding.FragmentDetailBinding
 import com.squareup.picasso.Picasso
 

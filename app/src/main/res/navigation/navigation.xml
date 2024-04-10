@@ -6,7 +6,7 @@
 
     <fragment
         android:id="@+id/mainlist"
-        android:name="com.example.kursapp.fragments.mainlist"
+        android:name="com.example.kursapp.presentation.fragments.mainlist"
         android:label="fragment_mainlist"
         tools:layout="@layout/fragment_mainlist" >
         <action
@@ -21,12 +21,12 @@
     </fragment>
     <fragment
         android:id="@+id/fragmentDetail2"
-        android:name="com.example.kursapp.fragments.FragmentDetail"
+        android:name="com.example.kursapp.presentation.fragments.FragmentDetail"
         android:label="fragment_detail"
         tools:layout="@layout/fragment_detail" />
     <fragment
         android:id="@+id/buildfragment"
-        android:name="com.example.kursapp.fragments.Buildfragment"
+        android:name="com.example.kursapp.presentation.fragments.Buildfragment"
         android:label="fragment_build"
         tools:layout="@layout/fragment_build" >
         <action
@@ -35,7 +35,7 @@
     </fragment>
     <fragment
         android:id="@+id/dbResViewFragment"
-        android:name="com.example.kursapp.fragments.DbResViewFragment"
+        android:name="com.example.kursapp.presentation.fragments.DbResViewFragment"
         android:label="fragment_db_resview"
         tools:layout="@layout/fragment_db_resview" >
         <action

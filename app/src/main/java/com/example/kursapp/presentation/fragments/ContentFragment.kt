@@ -1,9 +1,8 @@
-package com.example.kursapp
+package com.example.kursapp.presentation.fragments
 
 import android.content.res.Configuration
 import android.os.Bundle
 import android.view.View
-import android.widget.Switch
 
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
@@ -19,6 +18,7 @@ import com.example.kursapp.databinding.FragmentContentBinding
 import com.google.android.material.navigation.NavigationView
 import androidx.navigation.fragment.NavHostFragment
 import androidx.navigation.ui.navigateUp
+import com.example.kursapp.R
 
 class ContentFragment : AppCompatActivity() {
     private lateinit var binding: FragmentContentBinding
@@ -75,7 +75,7 @@ class ContentFragment : AppCompatActivity() {
         navView.setNavigationItemSelectedListener { menuItem ->
             when (menuItem.itemId) {
                 // Обработка нажатия на элемент "mainlist"
-                R.id.mainlist, R.id.buildfragment,R.id.dbResViewFragment -> {
+                R.id.mainlist, R.id.buildfragment, R.id.dbResViewFragment -> {
                     navController.navigate(menuItem.itemId)
                     drawerLayout.closeDrawer(GravityCompat.START)
 

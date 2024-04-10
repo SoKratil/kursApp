@@ -1,4 +1,4 @@
-package com.example.kursapp.fragments
+package com.example.kursapp.presentation.fragments
 
 import android.os.Bundle
 import android.view.LayoutInflater
@@ -10,10 +10,13 @@ import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.lifecycleScope
-import com.example.kursapp.Product
+import com.example.kursapp.presentation.Product
 import com.example.kursapp.databinding.FragmentBuildBinding
-import com.example.kursapp.db.AppDatabase
-import com.example.kursapp.db.ProductEntity
+import com.example.kursapp.data.db.AppDatabase
+import com.example.kursapp.data.db.ProductEntity
+import com.example.kursapp.data.repository.ProductRepositoryImpl
+import com.example.kursapp.domain.useCases.AddProductUseCase
+import com.example.kursapp.presentation.viewmodel.BuildFragmentViewModel
 import com.google.firebase.database.*
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
@@ -32,6 +35,9 @@ class Buildfragment : Fragment() {
     private var selectedRAM: Product? = null
     private var selectedSSD: Product? = null
     private var totalPrice: Double = 0.0
+
+
+    private lateinit var addProductUseCase: AddProductUseCase
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -349,10 +355,11 @@ class Buildfragment : Fragment() {
         withContext(Dispatchers.IO) {
             // Получаем DAO для доступа к базе данных
             val productDao = appDatabase.productDao()
-
+            val productRepository = ProductRepositoryImpl(productDao)
+            addProductUseCase = AddProductUseCase(productRepository)
             // Вставляем продукты в базу данных
             for (product in products) {
-                productDao.insertProduct(product)
+                productRepository.insertProduct(product)
             }
         }
     }

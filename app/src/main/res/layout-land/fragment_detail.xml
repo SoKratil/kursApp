@@ -5,7 +5,7 @@
     android:layout_height="match_parent"
     android:orientation="vertical"
     tools:viewBindingIgnore="false"
-    tools:context=".fragments.FragmentDetail">
+    tools:context=".presentation.fragments.FragmentDetail">
 
     <!-- View, выполняющая роль псевдо-тулбара -->
     <View

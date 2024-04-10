@@ -4,7 +4,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:viewBindingIgnore="false"
-    tools:context=".fragments.FragmentDetail">
+    tools:context=".presentation.fragments.FragmentDetail">
 
     <View
         android:id="@+id/rectanglefr"

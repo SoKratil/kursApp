@@ -1,4 +1,4 @@
-package com.example.kursapp
+package com.example.kursapp.presentation.adapters
 
 import android.view.LayoutInflater
 import android.view.View
@@ -6,6 +6,8 @@ import android.view.ViewGroup
 import android.widget.ImageView
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
+import com.example.kursapp.presentation.Product
+import com.example.kursapp.R
 
 import com.squareup.picasso.Picasso
 

@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:viewBindingIgnore="false"
-    tools:context=".fragments.DbResViewFragment"
+    tools:context=".presentation.fragments.DbResViewFragment"
     >
 
     <!-- RecyclerView для отображения списка товаров -->

@@ -1,9 +1,9 @@
-package com.example.kursapp.fragments
+package com.example.kursapp.presentation.viewmodel
 
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
-import com.example.kursapp.Product
+import com.example.kursapp.presentation.Product
 
 class BuildFragmentViewModel : ViewModel() {
 

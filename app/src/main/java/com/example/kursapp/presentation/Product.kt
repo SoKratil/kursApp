@@ -1,4 +1,4 @@
-package com.example.kursapp
+package com.example.kursapp.presentation
 
 import android.os.Parcel
 import android.os.Parcelable

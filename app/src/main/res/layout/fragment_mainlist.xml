@@ -13,7 +13,7 @@
         android:layout_height="match_parent"
         android:layout_below="@id/categorySpinner"
         android:layout_marginTop="8dp"
-        tools:context=".fragments.mainlist"/>
+        tools:context=".presentation.fragments.mainlist"/>
 
     <!-- Элемент Spinner для выбора категории -->
     <Spinner

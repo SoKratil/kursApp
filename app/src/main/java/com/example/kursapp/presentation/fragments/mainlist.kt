@@ -1,4 +1,4 @@
-package com.example.kursapp.fragments
+package com.example.kursapp.presentation.fragments
 
 import android.os.Bundle
 import android.view.LayoutInflater
@@ -11,8 +11,8 @@ import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 
-import com.example.kursapp.Product
-import com.example.kursapp.ProductAdapter
+import com.example.kursapp.presentation.Product
+import com.example.kursapp.presentation.adapters.ProductAdapter
 import com.example.kursapp.R
 import com.example.kursapp.databinding.FragmentMainlistBinding
 import com.google.firebase.database.*
